@@ -265,7 +265,7 @@ if a.is_forest:
                "Da LB2 eine Untergrenze ist, ist das das Optimum.")
 
 key_now = (settings, C.EXACT_TIME_LIMIT)
-if st.button(f"▶️ Exakt prüfen (CP-SAT, höchstens {int(C.EXACT_TIME_LIMIT)} s, {C.EXACT_WORKERS} Arbeiter)", key="exact_button"):
+if st.button(f"▶️ Exakt prüfen (CP-SAT, höchstens {int(C.EXACT_TIME_LIMIT)} s, {C.EXACT_WORKERS} Worker)", key="exact_button"):
     with st.spinner(f"CP-SAT rechnet (Zeitlimit {int(C.EXACT_TIME_LIMIT)} s) …"):
         st.session_state["exact"] = (key_now, solve_phases(arrs, C.EXACT_TIME_LIMIT, C.EXACT_WORKERS, hint=a.opt_offsets))
 exact = st.session_state.get("exact")
@@ -320,7 +320,7 @@ st.subheader("🔬 Experiment 3: Wald gegen Kreise")
 st.plotly_chart(V.build_rank_chart(fs["classes"]), width="stretch", key="rank_chart")
 kind, text = E.verdict_e3(fs, cps)
 getattr(st, kind)(text)
-st.caption(f"Gegenprobe der Lokalsuche an {cps['a_n']} Netzen gegen CP-SAT ({C.EXACT_TIME_LIMIT:.0f} s, {C.EXACT_WORKERS} Arbeiter): {cps['a_proven']} von {cps['a_n']} bewiesen, "
+st.caption(f"Gegenprobe der Lokalsuche an {cps['a_n']} Netzen gegen CP-SAT ({C.EXACT_TIME_LIMIT:.0f} s, {C.EXACT_WORKERS} Worker): {cps['a_proven']} von {cps['a_n']} bewiesen, "
            f"die Lokalsuche lag in {cps['a_ls_worse']} über dem CP-SAT-Fund (größte Abweichung {E.fmt(cps['a_max_dev'], 2)} min in der gespeicherten Messung; die Größe der Abweichung hängt vom Zeitlimit-Lauf ab).")
 
 st.subheader("🔬 Experiment 4: Haltezeit als Regler")
